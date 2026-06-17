@@ -56,4 +56,4 @@ Testamos com 5 mulheres reais usando o método SUS. A nota média foi **74/100**
 
 ---
 
-*UniCesumar — Campus Ponta Grossa — 2025*
+*UniCesumar — Campus Ponta Grossa — 17/06/2026*
