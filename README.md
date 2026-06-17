@@ -39,12 +39,9 @@ A violência contra a mulher é um problema sério no Brasil — segundo o Anuá
 
 ## Como testar o protótipo
 
-1. Baixe ou clone o repositório
-2. Abra a pasta `prototype` no seu computador
-3. Clique com o botão direito no arquivo `index.html` → **Abrir com** → **Google Chrome** (ou qualquer navegador)
-4. Clique em **Entrar** na tela inicial
-5. Segure o botão vermelho **SOS por 3 segundos** para disparar o alerta
-6. Use o menu inferior para explorar Contatos, Mapa e Configurações
+Baixa o repositório, abre a pasta `prototype` e clica com o botão direito no arquivo `index.html` → Abrir com → Google Chrome.
+
+Na tela que abrir, clica em **Entrar**. Pra disparar o alerta, segura o botão vermelho por 3 segundos. Dá pra explorar o resto pelo menu lá embaixo — tem Contatos, Mapa e Configurações.
 
 ---
 
