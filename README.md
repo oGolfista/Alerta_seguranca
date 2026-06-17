@@ -1,6 +1,6 @@
 # Alerta Segura
 
-Projeto Final de IHC — UniCesumar Campus Ponta Grossa, 2025/1
+Projeto Final de IHC — UniCesumar Campus Ponta Grossa, 17/06/2026
 
 ---
 
