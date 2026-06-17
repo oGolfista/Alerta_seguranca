@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Alerta Segura — protótipo interativo de app de segurança para mulheres">
+  <title>Alerta Segura | Protótipo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<p class="info-banner">💡 Para melhor experiência, abra no celular ou use DevTools → modo mobile (375px)</p>
+
+<div class="phone">
+  <div class="phone-chrome-top">
+    <div class="phone-speaker"></div>
+    <div class="phone-camera"></div>
+  </div>
+
+  <div class="phone-body">
+    <!-- Status bar -->
+    <div class="status-bar">
+      <span class="time">9:41</span>
+      <div class="status-right">
+        <svg class="icon-signal" viewBox="0 0 18 14" fill="currentColor">
+          <rect x="0" y="8" width="3" height="6" rx="0.5"/>
+          <rect x="5" y="5" width="3" height="9" rx="0.5"/>
+          <rect x="10" y="2" width="3" height="12" rx="0.5"/>
+          <rect x="15" y="0" width="3" height="14" rx="0.5" opacity="0.3"/>
+        </svg>
+        <svg class="icon-wifi" viewBox="0 0 20 14" fill="currentColor">
+          <path d="M10 10.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/>
+          <path d="M6 7.5C7.5 6 8.7 5.5 10 5.5s2.5.5 4 2"/>
+          <path d="M2.5 4C5 1.5 7.3.5 10 .5s5 1 7.5 3.5" opacity="0.4"/>
+        </svg>
+        <div class="battery-icon">
+          <div class="battery-level" style="width:72%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREENS -->
+    <div class="screens">
+
+      <!-- ══════════════════════════════════════
+           TELA 1: BOAS-VINDAS
+      ══════════════════════════════════════ -->
+      <div id="s-welcome" class="screen active">
+        <div class="welcome-bg"></div>
+        <div class="welcome-content">
+          <div class="logo-area">
+            <div class="logo-shield">
+              <svg viewBox="0 0 60 70" fill="none">
+                <path d="M30 3 L57 13 L57 36 C57 52 44 64 30 67 C16 64 3 52 3 36 L3 13 Z"
+                      fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                <path d="M30 8 L52 17 L52 36 C52 49 42 60 30 63 C18 60 8 49 8 36 L8 17 Z"
+                      fill="rgba(255,255,255,0.15)"/>
+                <path d="M19 35 L27 43 L41 28"
+                      stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="logo-text">
+              <span class="logo-alerta">Alerta</span>
+              <span class="logo-segura">Segura</span>
+            </div>
+          </div>
+
+          <p class="tagline">Sua segurança em suas mãos</p>
+
+          <div class="welcome-btns">
+            <button class="btn-primary" data-to="s-home">Entrar</button>
+            <button class="btn-outline" data-to="s-home">Criar conta</button>
+          </div>
+
+          <p class="terms">Ao continuar, você concorda com os
+            <a href="#">Termos de Uso</a> e a
+            <a href="#">Política de Privacidade</a></p>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           TELA 2: INÍCIO (HOME)
+      ══════════════════════════════════════ -->
+      <div id="s-home" class="screen">
+        <div class="app-top-bar">
+          <div class="top-left">
+            <p class="greeting">Olá, Mariana 👋</p>
+            <p class="subloc">📍 Ponta Grossa, PR</p>
+          </div>
+          <button class="icon-btn notif-btn" aria-label="Notificações">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="notif-dot"></span>
+          </button>
+        </div>
+
+        <div class="status-pill active-pill">
+          <div class="pulse-dot"></div>
+          <span>Localização ativa · 3 contatos monitorando</span>
+        </div>
+
+        <div class="panic-section">
+          <p class="panic-hint">Segure o botão por 3 segundos para disparar alerta</p>
+
+          <div class="panic-wrapper">
+            <svg class="progress-svg" viewBox="0 0 160 160">
+              <circle class="progress-track" cx="80" cy="80" r="72"/>
+              <circle class="progress-fill" id="progressCircle" cx="80" cy="80" r="72"/>
+            </svg>
+            <button class="panic-btn" id="panicBtn" aria-label="Botão de pânico SOS">
+              <span class="panic-sos">SOS</span>
+              <span class="panic-sub-txt">SEGURE</span>
+            </button>
+          </div>
+
+          <p class="panic-desc">Ativa alerta de emergência com localização em tempo real</p>
+        </div>
+
+        <div class="quick-grid">
+          <button class="q-card" data-to="s-contacts">
+            <span class="q-icon">👥</span>
+            <span class="q-label">Contatos</span>
+          </button>
+          <button class="q-card" data-to="s-map">
+            <span class="q-icon">🗺️</span>
+            <span class="q-label">Mapa</span>
+          </button>
+          <button class="q-card" data-to="s-history">
+            <span class="q-icon">📋</span>
+            <span class="q-label">Histórico</span>
+          </button>
+        </div>
+
+        <nav class="bottom-nav">
+          <button class="nav-item is-active" data-to="s-home">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            <span>Início</span>
+          </button>
+          <button class="nav-item" data-to="s-contacts">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>Contatos</span>
+          </button>
+          <button class="nav-item" data-to="s-map">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+              <line x1="9" y1="3" x2="9" y2="18"/>
+              <line x1="15" y1="6" x2="15" y2="21"/>
+            </svg>
+            <span>Mapa</span>
+          </button>
+          <button class="nav-item" data-to="s-settings">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            <span>Config.</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           TELA 3: ALERTA ENVIADO
+      ══════════════════════════════════════ -->
+      <div id="s-alert" class="screen alert-screen">
+        <div class="alert-bg-pulse"></div>
+        <div class="alert-content">
+          <div class="alert-check">
+            <svg viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="38" fill="#059669"/>
+              <path d="M24 40 L35 51 L56 29"
+                    stroke="white" stroke-width="4"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <h2 class="alert-title">Alerta Enviado!</h2>
+          <p class="alert-subtitle">Seus contatos foram notificados com sua localização em tempo real.</p>
+
+          <div class="notified-list">
+            <div class="notified-item">
+              <div class="contact-avatar av-green">M</div>
+              <div class="contact-info">
+                <span class="contact-name">Mãe (Maria)</span>
+                <span class="contact-status">✓ Notificada agora</span>
+              </div>
+            </div>
+            <div class="notified-item">
+              <div class="contact-avatar av-blue">J</div>
+              <div class="contact-info">
+                <span class="contact-name">Julia (amiga)</span>
+                <span class="contact-status">✓ Notificada agora</span>
+              </div>
+            </div>
+            <div class="notified-item">
+              <div class="contact-avatar av-purple">P</div>
+              <div class="contact-info">
+                <span class="contact-name">Pedro (namorado)</span>
+                <span class="contact-status">✓ Notificado agora</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert-actions">
+            <a href="tel:190" class="btn-emergency">📞 Ligar para 190 (Polícia)</a>
+            <button class="btn-cancel-alert" data-to="s-home">Cancelar Alerta</button>
+          </div>
+
+          <p class="alert-note">O alerta permanece ativo até você cancelar</p>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           TELA 4: CONTATOS
+      ══════════════════════════════════════ -->
+      <div id="s-contacts" class="screen">
+        <div class="screen-header">
+          <button class="back-btn" data-to="s-home" aria-label="Voltar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M19 12H5M12 5l-7 7 7 7"/>
+            </svg>
+          </button>
+          <h1 class="screen-title">Contatos</h1>
+          <button class="add-btn icon-btn" data-to="s-add-contact" aria-label="Adicionar contato">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+        </div>
+
+        <p class="contacts-subtitle">Pessoas que receberão seu alerta de emergência</p>
+
+        <div class="contacts-list">
+          <div class="contact-card">
+            <div class="contact-avatar av-green">M</div>
+            <div class="contact-info">
+              <span class="contact-name">Mãe (Maria)</span>
+              <span class="contact-phone">(42) 9 8811-2233</span>
+            </div>
+            <div class="contact-badge online">online</div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-avatar av-blue">J</div>
+            <div class="contact-info">
+              <span class="contact-name">Julia (amiga)</span>
+              <span class="contact-phone">(42) 9 9900-1122</span>
+            </div>
+            <div class="contact-badge online">online</div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-avatar av-purple">P</div>
+            <div class="contact-info">
+              <span class="contact-name">Pedro (namorado)</span>
+              <span class="contact-phone">(42) 9 8833-4455</span>
+            </div>
+            <div class="contact-badge offline">offline</div>
+          </div>
+        </div>
+
+        <button class="btn-add-contact" data-to="s-add-contact">
+          + Adicionar contato de confiança
+        </button>
+
+        <nav class="bottom-nav">
+          <button class="nav-item" data-to="s-home">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <span>Início</span>
+          </button>
+          <button class="nav-item is-active" data-to="s-contacts">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>Contatos</span>
+          </button>
+          <button class="nav-item" data-to="s-map">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+              <line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/>
+            </svg>
+            <span>Mapa</span>
+          </button>
+          <button class="nav-item" data-to="s-settings">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            <span>Config.</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           TELA 5: ADICIONAR CONTATO
+      ══════════════════════════════════════ -->
+      <div id="s-add-contact" class="screen">
+        <div class="screen-header">
+          <button class="back-btn" data-to="s-contacts" aria-label="Voltar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M19 12H5M12 5l-7 7 7 7"/>
+            </svg>
+          </button>
+          <h1 class="screen-title">Novo Contato</h1>
+          <div style="width:36px"></div>
+        </div>
+
+        <form class="contact-form" onsubmit="return false;">
+          <div class="form-group">
+            <label for="inp-name">Como você chama essa pessoa?</label>
+            <input id="inp-name" type="text" placeholder="Ex: Mãe, Melhor amiga, Irmã...">
+          </div>
+          <div class="form-group">
+            <label for="inp-phone">Número de telefone</label>
+            <input id="inp-phone" type="tel" placeholder="(42) 9 0000-0000">
+          </div>
+          <div class="form-group">
+            <label for="inp-rel">Tipo de relação</label>
+            <select id="inp-rel">
+              <option>Familiar</option>
+              <option>Amigo(a)</option>
+              <option>Parceiro(a)</option>
+              <option>Colega de trabalho</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <button type="button" class="btn-primary btn-full" data-to="s-contacts">
+            Salvar Contato
+          </button>
+        </form>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           TELA 6: MAPA DE RISCO
+      ══════════════════════════════════════ -->
+      <div id="s-map" class="screen">
+        <div class="screen-header">
+          <button class="back-btn" data-to="s-home" aria-label="Voltar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M19 12H5M12 5l-7 7 7 7"/>
+            </svg>
+          </button>
+          <h1 class="screen-title">Mapa de Risco</h1>
+          <div style="width:36px"></div>
+        </div>
+
+        <div class="map-legend">
+          <div class="legend-item">
+            <div class="legend-dot red"></div>
+            <span>Área de risco relatada</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot blue"></div>
+            <span>Você está aqui</span>
+          </div>
+        </div>
+
+        <div class="map-container">
+          <svg class="city-map" viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice">
+            <!-- Fundo -->
+            <rect width="300" height="240" fill="#E8F5E9"/>
+
+            <!-- Quadras -->
+            <rect x="0"   y="0"   width="300" height="240" fill="#EEF2F7"/>
+
+            <!-- Ruas horizontais -->
+            <rect x="0" y="45"  width="300" height="9"  fill="#D1D9E6"/>
+            <rect x="0" y="95"  width="300" height="9"  fill="#D1D9E6"/>
+            <rect x="0" y="140" width="300" height="12" fill="#BEC8D9"/>
+            <rect x="0" y="190" width="300" height="9"  fill="#D1D9E6"/>
+
+            <!-- Ruas verticais -->
+            <rect x="45"  y="0" width="9"  height="240" fill="#D1D9E6"/>
+            <rect x="95"  y="0" width="9"  height="240" fill="#D1D9E6"/>
+            <rect x="145" y="0" width="12" height="240" fill="#BEC8D9"/>
+            <rect x="195" y="0" width="9"  height="240" fill="#D1D9E6"/>
+            <rect x="245" y="0" width="9"  height="240" fill="#D1D9E6"/>
+
+            <!-- Edificios (quadras) -->
+            <rect x="5"   y="5"   width="36" height="36" fill="#C5D5E8" rx="2"/>
+            <rect x="57"  y="5"   width="34" height="36" fill="#C5D5E8" rx="2"/>
+            <rect x="107" y="5"   width="34" height="36" fill="#C5D5E8" rx="2"/>
+            <rect x="160" y="5"   width="31" height="36" fill="#C5D5E8" rx="2"/>
+            <rect x="207" y="5"   width="34" height="36" fill="#C5D5E8" rx="2"/>
+            <rect x="257" y="5"   width="38" height="36" fill="#C5D5E8" rx="2"/>
+
+            <rect x="5"   y="57"  width="36" height="34" fill="#C5D5E8" rx="2"/>
+            <rect x="57"  y="57"  width="34" height="34" fill="#D4E8D4" rx="2"/>
+            <rect x="107" y="57"  width="34" height="34" fill="#C5D5E8" rx="2"/>
+            <rect x="160" y="57"  width="31" height="34" fill="#C5D5E8" rx="2"/>
+            <rect x="207" y="57"  width="34" height="34" fill="#C5D5E8" rx="2"/>
+            <rect x="257" y="57"  width="38" height="34" fill="#C5D5E8" rx="2"/>
+
+            <rect x="5"   y="107" width="36" height="29" fill="#C5D5E8" rx="2"/>
+            <rect x="57"  y="107" width="34" height="29" fill="#C5D5E8" rx="2"/>
+            <rect x="107" y="107" width="34" height="29" fill="#D4E8D4" rx="2"/>
+            <rect x="160" y="107" width="31" height="29" fill="#C5D5E8" rx="2"/>
+            <rect x="207" y="107" width="34" height="29" fill="#C5D5E8" rx="2"/>
+            <rect x="257" y="107" width="38" height="29" fill="#C5D5E8" rx="2"/>
+
+            <rect x="5"   y="155" width="36" height="31" fill="#C5D5E8" rx="2"/>
+            <rect x="57"  y="155" width="34" height="31" fill="#C5D5E8" rx="2"/>
+            <rect x="107" y="155" width="34" height="31" fill="#C5D5E8" rx="2"/>
+            <rect x="160" y="155" width="31" height="31" fill="#C5D5E8" rx="2"/>
+            <rect x="207" y="155" width="34" height="31" fill="#C5D5E8" rx="2"/>
+            <rect x="257" y="155" width="38" height="31" fill="#C5D5E8" rx="2"/>
+
+            <rect x="5"   y="202" width="36" height="33" fill="#C5D5E8" rx="2"/>
+            <rect x="57"  y="202" width="34" height="33" fill="#C5D5E8" rx="2"/>
+            <rect x="107" y="202" width="34" height="33" fill="#C5D5E8" rx="2"/>
+            <rect x="160" y="202" width="31" height="33" fill="#C5D5E8" rx="2"/>
+            <rect x="207" y="202" width="34" height="33" fill="#C5D5E8" rx="2"/>
+            <rect x="257" y="202" width="38" height="33" fill="#C5D5E8" rx="2"/>
+
+            <!-- Zonas de risco (círculos vermelhos semitransparentes) -->
+            <circle cx="75"  cy="175" r="28" fill="rgba(220,38,38,0.22)" stroke="#DC2626" stroke-width="1.5"/>
+            <text x="75" y="179" text-anchor="middle" font-size="13" fill="#DC2626">⚠</text>
+
+            <circle cx="220" cy="75"  r="24" fill="rgba(220,38,38,0.22)" stroke="#DC2626" stroke-width="1.5"/>
+            <text x="220" y="79" text-anchor="middle" font-size="13" fill="#DC2626">⚠</text>
+
+            <circle cx="170" cy="165" r="20" fill="rgba(220,38,38,0.18)" stroke="#DC2626" stroke-width="1.5"/>
+            <text x="170" y="169" text-anchor="middle" font-size="11" fill="#DC2626">⚠</text>
+
+            <!-- Localização do usuário -->
+            <circle cx="151" cy="144" r="16" fill="rgba(59,130,246,0.18)"/>
+            <circle cx="151" cy="144" r="9"  fill="#3B82F6" stroke="white" stroke-width="2.5"/>
+
+            <!-- Labels das ruas -->
+            <text x="151" y="137" text-anchor="middle" font-size="6" fill="#6B7280">Av. Pres. Kennedy</text>
+            <text x="5" y="139" font-size="6" fill="#6B7280" transform="rotate(-90,5,139)">Rua Júlia Wanderley</text>
+          </svg>
+        </div>
+
+        <button class="btn-report-area">+ Reportar área de risco</button>
+
+        <nav class="bottom-nav">
+          <button class="nav-item" data-to="s-home">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <span>Início</span>
+          </button>
+          <button class="nav-item" data-to="s-contacts">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>Contatos</span>
+          </button>
+          <button class="nav-item is-active" data-to="s-map">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+              <line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/>
+            </svg>
+            <span>Mapa</span>
+          </button>
+          <button class="nav-item" data-to="s-settings">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            <span>Config.</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           TELA 7: HISTÓRICO
+      ══════════════════════════════════════ -->
+      <div id="s-history" class="screen">
+        <div class="screen-header">
+          <button class="back-btn" data-to="s-home" aria-label="Voltar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M19 12H5M12 5l-7 7 7 7"/>
+            </svg>
+          </button>
+          <h1 class="screen-title">Histórico</h1>
+          <div style="width:36px"></div>
+        </div>
+
+        <div class="history-list">
+          <div class="history-item">
+            <div class="history-icon cancelled">✕</div>
+            <div class="history-info">
+              <span class="history-title">Alerta cancelado</span>
+              <span class="history-date">Hoje, 22:14 · Centro, Ponta Grossa</span>
+            </div>
+          </div>
+          <div class="history-item">
+            <div class="history-icon sent">✓</div>
+            <div class="history-info">
+              <span class="history-title">Alerta enviado</span>
+              <span class="history-date">14 Jun, 21:58 · Av. Vicente Machado</span>
+            </div>
+          </div>
+          <div class="history-item">
+            <div class="history-icon cancelled">✕</div>
+            <div class="history-info">
+              <span class="history-title">Alerta cancelado</span>
+              <span class="history-date">10 Jun, 23:05 · Terminal Urbano</span>
+            </div>
+          </div>
+          <div class="history-item">
+            <div class="history-icon cancelled">✕</div>
+            <div class="history-info">
+              <span class="history-title">Alerta cancelado</span>
+              <span class="history-date">02 Jun, 22:40 · Rua Saldanha Marinho</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           TELA 8: CONFIGURAÇÕES
+      ══════════════════════════════════════ -->
+      <div id="s-settings" class="screen">
+        <div class="screen-header">
+          <button class="back-btn" data-to="s-home" aria-label="Voltar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M19 12H5M12 5l-7 7 7 7"/>
+            </svg>
+          </button>
+          <h1 class="screen-title">Configurações</h1>
+          <div style="width:36px"></div>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-avatar">M</div>
+          <div>
+            <p class="profile-name">Mariana Costa</p>
+            <p class="profile-email">mariana.costa@email.com</p>
+          </div>
+        </div>
+
+        <div class="settings-list">
+          <div class="settings-item">
+            <span class="settings-label">Compartilhar localização</span>
+            <div class="toggle on" id="locToggle"></div>
+          </div>
+          <div class="settings-item">
+            <span class="settings-label">Notificações de risco</span>
+            <div class="toggle on"></div>
+          </div>
+          <div class="settings-item">
+            <span class="settings-label">Modo discreto (sem som)</span>
+            <div class="toggle" id="silentToggle"></div>
+          </div>
+          <div class="settings-item">
+            <span class="settings-label">Tempo de ativação do botão</span>
+            <span class="settings-value">3 segundos</span>
+          </div>
+          <div class="settings-item">
+            <span class="settings-label">Mensagem automática</span>
+            <span class="settings-value-sm">Preciso de ajuda!</span>
+          </div>
+          <div class="settings-item">
+            <span class="settings-label">Versão do app</span>
+            <span class="settings-value">1.0.0 (beta)</span>
+          </div>
+        </div>
+
+        <button class="btn-logout">Sair da conta</button>
+      </div>
+
+    </div><!-- /screens -->
+  </div><!-- /phone-body -->
+
+  <div class="phone-chrome-bottom">
+    <div class="home-indicator"></div>
+  </div>
+</div><!-- /phone -->
+
+<script src="script.js"></script>
+</body>
+</html>
