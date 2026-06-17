@@ -39,9 +39,7 @@ A violência contra a mulher é um problema sério no Brasil — segundo o Anuá
 
 ## Como testar o protótipo
 
-Baixa o repositório, abre a pasta `prototype` e clica com o botão direito no arquivo `index.html` → Abrir com → Google Chrome.
-
-Na tela que abrir, clica em **Entrar**. Pra disparar o alerta, segura o botão vermelho por 3 segundos. Dá pra explorar o resto pelo menu lá embaixo — tem Contatos, Mapa e Configurações.
+Baixa o repositório, entra na pasta prototype e abre o arquivo index.html no navegador. Na tela inicial clica em Entrar, aí já aparece o app. Pra disparar o alerta é só segurar o botão vermelho por 3 segundos. O resto dá pra explorar pelo menu embaixo da tela.
 
 ---
 
